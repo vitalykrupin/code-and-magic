@@ -15,26 +15,6 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
-// var randomItem = function (arr) {
-//   var min = 0;
-//   var max = arr.length - 1;
-//   var rand = min + Math.random() * (max + 1 - min);
-//   rand = Math.floor(rand);
-//   return rand;
-// };
-//
-// var createArrWizards = function () {
-//   var wizards = [];
-//   for (var i = 0; i < NUMBER_OF_WIZARDS; i++) {
-//     wizards.push({
-//       name: WIZARD_NAMES[randomItem(WIZARD_NAMES)] + ' ' + WIZARD_SURNAMES[randomItem(WIZARD_SURNAMES)],
-//       coatColor: COAT_COLORS[randomItem(COAT_COLORS)],
-//       eyesColor: EYES_COLORS[randomItem(EYES_COLORS)]
-//     });
-//   }
-//   return wizards;
-// };
-
 var chooseArrItem = function (arr) {
   var rand = arr[Math.floor(Math.random() * arr.length)];
   return rand;
