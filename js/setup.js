@@ -16,8 +16,7 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .querySelector('.setup-similar-item');
 
 var chooseArrItem = function (arr) {
-  var rand = arr[Math.floor(Math.random() * arr.length)];
-  return rand;
+  return arr[Math.floor(Math.random() * arr.length)];
 };
 
 var createArrWizards = function () {
