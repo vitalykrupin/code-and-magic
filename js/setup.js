@@ -17,7 +17,7 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
-var chooseArrItem = function (arr) {
+var chooseRandArrItem = function (arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 };
 
@@ -25,9 +25,9 @@ var createArrWizards = function () {
   var wizards = [];
   for (var i = 0; i < NUMBER_OF_WIZARDS; i++) {
     wizards.push({
-      name: chooseArrItem(WIZARD_NAMES) + ' ' + chooseArrItem(WIZARD_SURNAMES),
-      coatColor: chooseArrItem(COAT_COLORS),
-      eyesColor: chooseArrItem(EYES_COLORS)
+      name: chooseRandArrItem(WIZARD_NAMES) + ' ' + chooseRandArrItem(WIZARD_SURNAMES),
+      coatColor: chooseRandArrItem(COAT_COLORS),
+      eyesColor: chooseRandArrItem(EYES_COLORS)
     });
   }
   return wizards;
@@ -103,3 +103,28 @@ userNameInput.addEventListener('invalid', function () {
     userNameInput.setCustomValidity('');
   }
 });
+
+var inputEyesColor = setup.querySelector('input[name=eyes-color]');
+var inputFireballColor = setup.querySelector('input[name=fireball-color]');
+var inputCoatColor = setup.querySelector('input[name=coat-color]');
+var wizardEyes = setup.querySelector('.wizard-eyes');
+var fireballWrap = setup.querySelector('.setup-fireball-wrap');
+var wizardCoat = setup.querySelector('.wizard-coat');
+
+var chooseNextItem = function (arr, inputType) {
+  var indexColor = arr.indexOf(inputType.value) + 1;
+  var nextItem = arr[indexColor % arr.length];
+  return nextItem;
+};
+
+var changeColor = function (element, attribute, colorsArr, input) {
+  element.addEventListener('click', function () {
+    var nextColor = chooseNextItem(colorsArr, input);
+    element.style[attribute] = nextColor;
+    input.value = nextColor;
+  });
+};
+
+changeColor(wizardEyes, 'fill', EYES_COLORS, inputEyesColor);
+changeColor(wizardCoat, 'fill', COAT_COLORS, inputCoatColor);
+changeColor(fireballWrap, 'background', FIREBALL_COLORS, inputFireballColor);
