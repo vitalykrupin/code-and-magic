@@ -4,6 +4,7 @@ var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'К
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
+var FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 var NUMBER_OF_WIZARDS = 4;
 var ESC_KEYCODE = 27;
 var ENTER_KEYCODE = 13;
@@ -55,7 +56,7 @@ var setupOpen = document.querySelector('.setup-open');
 var setupClose = document.querySelector('.setup-close');
 
 var onPopupEscPress = function (evt) {
-  if (evt.keyCode === ESC_KEYCODE) {
+  if (evt.keyCode === ESC_KEYCODE && userNameInput !== document.activeElement) {
     closePopup();
   }
 };
@@ -87,5 +88,18 @@ setupClose.addEventListener('click', function () {
 setupClose.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     closePopup();
+  }
+});
+
+var userNameInput = document.querySelector('.setup-user-name');
+userNameInput.addEventListener('invalid', function () {
+  if (userNameInput.validity.tooShort) {
+    userNameInput.setCustomValidity('Имя должно состоять минимум из 2-х символов');
+  } else if (userNameInput.validity.tooLong) {
+    userNameInput.setCustomValidity('Имя не должно превышать 25-ти символов');
+  } else if (userNameInput.validity.valueMissing) {
+    userNameInput.setCustomValidity('Обязательное поле');
+  } else {
+    userNameInput.setCustomValidity('');
   }
 });
