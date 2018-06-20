@@ -112,8 +112,8 @@ var fireballWrap = setup.querySelector('.setup-fireball-wrap');
 var wizardCoat = setup.querySelector('.wizard-coat');
 
 var chooseNextItem = function (arr, inputType) {
-  var indexColor = arr.indexOf(inputType.value) + 1;
-  var nextItem = arr[indexColor % arr.length];
+  var indexItem = arr.indexOf(inputType.value) + 1;
+  var nextItem = arr[indexItem % arr.length];
   return nextItem;
 };
 
